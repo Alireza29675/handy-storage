@@ -3,10 +3,10 @@ const beautify = require('json-beautify')
 
 class HandyStorage {
     constructor (path) {
-        this.path = path
-        this.init()
+        if (path !== undefined) this.load(path)
     }
-    init () {
+    load (path) {
+        this.path = path
         const content = fs.readFileSync(this.path, 'utf8')
         this.data = JSON.parse(content == '' ? '{}' : content)
     }
