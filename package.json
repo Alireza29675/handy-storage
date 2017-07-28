@@ -26,6 +26,7 @@
     "babel-preset-stage-0": "^6.24.1"
   },
   "dependencies": {
-    "json-beautify": "^1.0.1"
+    "json-beautify": "^1.0.1",
+    "watchjs": "0.0.0"
   }
 }
