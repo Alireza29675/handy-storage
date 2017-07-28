@@ -1,0 +1,31 @@
+{
+  "name": "handy-storage",
+  "version": "1.0.0",
+  "description": "Handy Storage is a simple way to store your data in a JSON file",
+  "main": "lib/index.js",
+  "scripts": {
+    "test": "node test/index.js",
+    "compile": "babel --presets es2015,stage-0 -d lib/ src/",
+    "compile-watch": "babel -w --presets es2015,stage-0 -d lib/ src/",
+    "prepublish": "npm run compile"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Alireza29675/__________.git"
+  },
+  "keywords": [],
+  "author": "Alireza Sheikholmolouki",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Alireza29675/__________/issues"
+  },
+  "homepage": "https://github.com/Alireza29675/__________#readme",
+  "devDependencies": {
+    "babel-cli": "^6.24.1",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-preset-stage-0": "^6.24.1"
+  },
+  "dependencies": {
+    "json-beautify": "^1.0.1"
+  }
+}
