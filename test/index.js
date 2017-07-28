@@ -1,9 +1,9 @@
-var HandyStorage = require('../lib/index')
+var Handy = require('../lib/index')
 
-const storage = new HandyStorage('./test/db.json')
+const storage = new Handy('./test/db.json')
 
-storage.json.a = 1
-storage.json.b = 1
+storage.data.a = 1
+storage.data.b = 1
 storage.save()
 
 console.log(storage)
