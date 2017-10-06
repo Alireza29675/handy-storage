@@ -1,6 +1,5 @@
 const fs = require('fs')
 const beautify = require('json-beautify')
-const watch = require('watchjs')
 
 class HandyStorage {
 
@@ -14,8 +13,8 @@ class HandyStorage {
             if (path.autoSave !== undefined) autoSave = path.autoSave
             path = path.path || path.url || undefined
         }
-        this._autoSave = autoSave
         if (path !== undefined) this.load(path)
+        this.autoSave = autoSave
     }
 
     /**
@@ -42,12 +41,20 @@ class HandyStorage {
 
     /**
      * autoSave variable setter
-     * @param (boolean) to
+     * @param (boolean) mustAutoSave
      */
-    set autoSave (to) {
-        if (typeof to === 'boolean') this._autoSave = to
+    set autoSave (mustAutoSave) {
+        if (typeof mustAutoSave === 'boolean') {
+            this._autoSave = mustAutoSave
+            if (mustAutoSave) {
+                
+            }
+            else {
+
+            }
+        }
     }
-        
+
     /**
      * autoSave variable getter
      */
