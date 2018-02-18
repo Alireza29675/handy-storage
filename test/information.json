@@ -1,5 +1,6 @@
 {
     "name": "Alireza",
-    "skills": [ "Art", "Programming" ],
-    "friends": [ "John", "Jack" ]
+    "lastname": "Sh",
+    "friends": [ "Jane", "John" ],
+    "visited": 1
 }

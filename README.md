@@ -14,18 +14,25 @@ npm install --save handy-storage
 ```javascript
 const HandyStorage = require('handy-storage');
 
-const storage = new HandyStorage();
-storage.load('./information.json');
+const storage = new HandyStorage({
+    beautify: true
+});
 
-storage.data.name = 'Alireza';
-storage.data.skills = ['Art', 'Programming'];
+storage.connect('./information.json');
 
-storage.data.friends = storage.data.friends || [];
+storage.setState({
+    name: 'Alireza',
+    lastname: 'Sh',
+    friends: [
+        'Jane',
+        'John'
+    ],
+    visited: storage.state.visited || 0
+})
 
-storage.data.friends.push('John');
-storage.data.friends.push('Jack');
-
-storage.save();
+storage.setState({
+    visited: storage.state.visited + 1
+})
 ```
 
 <a name="Refrence"></a>
@@ -39,24 +46,30 @@ storage.save();
 
 * [HandyStorage](#HandyStorage)
     * [new HandyStorage([path])](#new_HandyStorage_new)
-    * [.load(path)](#HandyStorage+load)
-    * [.data](#HandyStorage+data)
-    * [.save()](#HandyStorage+save) ⇒ <code>Promise</code>
+    * [.connect(path)](#HandyStorage+connect)
+    * [.state](#HandyStorage+state)
+    * [.setState([changes])](#HandyStorage+setState)
+    * [.save([options])](#HandyStorage+save) ⇒ <code>Promise</code>
 
 <a name="new_HandyStorage_new"></a>
 
-### new HandyStorage([path])
+### new HandyStorage([path], [options])
 Represents a "Handy" storage
+
 
 
 | Param | Type | Description |
 | --- | --- | --- |
-| [path] | <code>String</code> | Path of JSON file |
+| [path] | <code>string</code> | Path of JSON file |
+| [options] | <code>Object</code> | Additional Configurations |
+| [options.beautify] | <code>boolean</code> | Should storage beautify JSON before storing? _(Default: **false**)_ |
+| [options.autoSave] | <code>boolean</code> | Should storage auto save when you use **.setState()** method? _(Default: **true**)_ |
 
-<a name="HandyStorage+load"></a>
 
-### handyStorage.load(path)
-Loads a JSON file
+<a name="HandyStorage+connect"></a>
+
+### handyStorage.connect(path)
+Connects storage to a JSON file
 
 **Kind**: instance method of [<code>HandyStorage</code>](#HandyStorage)
 
@@ -64,20 +77,41 @@ Loads a JSON file
 | --- | --- | --- |
 | path | <code>string</code> | Path of JSON file |
 
-<a name="HandyStorage+data"></a>
+<a name="HandyStorage+state"></a>
 
-### handyStorage.data
-Mirror object of file's data
+### handyStorage.state
+State object of storage, including all stored data
 
 **Kind**: instance property of [<code>HandyStorage</code>](#HandyStorage)
 
-**Tip**: you can change this object and call [.save()](#HandyStorage+save) to store it into JSON file.
+> **Tip 1**: you can change this object and call [.save()](#HandyStorage+save) to store it into JSON file.
+
+> **Tip 2**: try to use [.setState()](#HandyStorage+setState) method instead of changing **.state** directly! it's much safer, also it supports **autoSave** mode.
+
+<a name="HandyStorage+setState"></a>
+
+### handyStorage.setState(changes) ⇒ <code>Promise</code>
+Sets some changes on "state" object then saves it into the file
+
+**Kind**: instance method of [<code>HandyStorage</code>](#HandyStorage)
+
+| Param | Type | Description |
+| --- | --- | --- |
+| changes | <code>Object</code> | State changes |
+
+**Returns**: <code>Promise</code> - State change callback promise
 
 
 <a name="HandyStorage+save"></a>
 
-### handyStorage.save() ⇒ <code>Promise</code>
-Saves current data into the JSON file
+### handyStorage.save([options]) ⇒ <code>Promise</code>
+Saves current state into the connected JSON file
 
 **Kind**: instance method of [<code>HandyStorage</code>](#HandyStorage)
-**Returns**: <code>Promise</code> - Saving data callback promise
+
+| Param | Type | Description |
+| --- | --- | --- |
+| [options] | <code>Object</code> | Additional save configurations |
+| [options.sync] | <code>boolean</code> | Should save synchronous? _(Default: **false**)_ |
+
+**Returns**: <code>Promise</code> - Saving state callback promise
