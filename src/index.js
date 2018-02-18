@@ -17,6 +17,9 @@ class HandyStorage {
             path = undefined;
         }
 
+        // defining state
+        this.state = null;
+
         // Initial variables
         this.savingInProgress = false;
         this.beautify = options.beautify || false;
@@ -32,12 +35,12 @@ class HandyStorage {
     connect (path) {
         this.path = path;
         const content = fs.readFileSync(path, 'utf8');
-        this.data = JSON.parse(content || '{}');
+        this.state = JSON.parse(content || '{}');
     }
 
     /**
-     * Saves current data into the connected JSON file
-     * @return {Promise} Saving data callback promise
+     * Saves current state into the connected JSON file
+     * @return {Promise} Saving state callback promise
      */
     save () {
         return new Promise ((resolve, reject) => {
@@ -47,14 +50,14 @@ class HandyStorage {
             // Save it if saving was not in progress
             this.savingInProgress = true;
 
-            // beutify data if required
-            const fileData = this.beautify ? beautify(this.data, null, 4, 50) : JSON.stringify(this.data);
+            // beutify state object if required
+            const data = this.beautify ? beautify(this.state, null, 4, 50) : JSON.stringify(this.state);
 
-            // writing fileData to file
-            fs.writeFile(this.path, fileData, { flag: 'w' }, (err) => {
+            // writing data to file
+            fs.writeFile(this.path, data, { flag: 'w' }, (err) => {
                 this.savingInProgress = false;
                 if (err) return reject(err);
-                resolve(this.data);
+                resolve(this.state);
             })
         })
     }

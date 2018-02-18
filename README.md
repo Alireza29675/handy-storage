@@ -17,13 +17,13 @@ const HandyStorage = require('handy-storage');
 const storage = new HandyStorage();
 storage.connect('./information.json');
 
-storage.data.name = 'Alireza';
-storage.data.skills = ['Art', 'Programming'];
+storage.state.name = 'Alireza';
+storage.state.skills = ['Art', 'Programming'];
 
-storage.data.friends = storage.data.friends || [];
+storage.state.friends = storage.state.friends || [];
 
-storage.data.friends.push('John');
-storage.data.friends.push('Jack');
+storage.state.friends.push('John');
+storage.state.friends.push('Jack');
 
 storage.save();
 ```
@@ -40,7 +40,7 @@ storage.save();
 * [HandyStorage](#HandyStorage)
     * [new HandyStorage([path])](#new_HandyStorage_new)
     * [.connect(path)](#HandyStorage+connect)
-    * [.data](#HandyStorage+data)
+    * [.state](#HandyStorage+state)
     * [.save()](#HandyStorage+save) ⇒ <code>Promise</code>
 
 <a name="new_HandyStorage_new"></a>
@@ -68,9 +68,9 @@ Connects storage to a JSON file
 | --- | --- | --- |
 | path | <code>string</code> | Path of JSON file |
 
-<a name="HandyStorage+data"></a>
+<a name="HandyStorage+state"></a>
 
-### handyStorage.data
+### handyStorage.state
 Mirror object of file's data
 
 **Kind**: instance property of [<code>HandyStorage</code>](#HandyStorage)
@@ -81,7 +81,7 @@ Mirror object of file's data
 <a name="HandyStorage+save"></a>
 
 ### handyStorage.save() ⇒ <code>Promise</code>
-Saves current data into the connected JSON file
+Saves current state into the connected JSON file
 
 **Kind**: instance method of [<code>HandyStorage</code>](#HandyStorage)
-**Returns**: <code>Promise</code> - Saving data callback promise
+**Returns**: <code>Promise</code> - Saving state callback promise
