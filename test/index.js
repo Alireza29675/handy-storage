@@ -14,4 +14,4 @@ storage.state.friends = storage.state.friends || [];
 storage.state.friends.push('John');
 storage.state.friends.push('Jack');
 
-storage.save();
+storage.save({ sync: true });

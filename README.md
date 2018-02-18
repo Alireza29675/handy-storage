@@ -85,4 +85,10 @@ Mirror object of file's data
 Saves current state into the connected JSON file
 
 **Kind**: instance method of [<code>HandyStorage</code>](#HandyStorage)
+
+| Param | Type | Description |
+| --- | --- | --- |
+| [options] | <code>Object</code> | Additional save configurations |
+| [options.sync] | <code>boolean</code> | Should save synchronous? (Default: false) |
+
 **Returns**: <code>Promise</code> - Saving state callback promise
