@@ -18,7 +18,7 @@ const storage = new HandyStorage({
     beautify: true
 });
 
-storage.connect('./test/information.json');
+storage.connect('./information.json');
 
 storage.setState({
     name: 'Alireza',
@@ -62,8 +62,8 @@ Represents a "Handy" storage
 | --- | --- | --- |
 | [path] | <code>string</code> | Path of JSON file |
 | [options] | <code>Object</code> | Additional Configurations |
-| [options.beautify] | <code>boolean</code> | Should storage beautify JSON before storing? (Default: false) |
-| [options.autoSave] | <code>boolean</code> | Should storage auto save when you use **.setState()** method? (Default: true) |
+| [options.beautify] | <code>boolean</code> | Should storage beautify JSON before storing? _(Default: **false**)_ |
+| [options.autoSave] | <code>boolean</code> | Should storage auto save when you use **.setState()** method? _(Default: **true**)_ |
 
 
 <a name="HandyStorage+connect"></a>
@@ -84,9 +84,9 @@ State object of storage, including all stored data
 
 **Kind**: instance property of [<code>HandyStorage</code>](#HandyStorage)
 
-**Tip 1**: you can change this object and call [.save()](#HandyStorage+save) to store it into JSON file.
+> **Tip 1**: you can change this object and call [.save()](#HandyStorage+save) to store it into JSON file.
 
-**Tip 2**: try to use [.setState()](#HandyStorage+setState) method instead of changing **.state** directly! it's much safer, also it supports **autoSave** mode.
+> **Tip 2**: try to use [.setState()](#HandyStorage+setState) method instead of changing **.state** directly! it's much safer, also it supports **autoSave** mode.
 
 <a name="HandyStorage+setState"></a>
 
@@ -112,6 +112,6 @@ Saves current state into the connected JSON file
 | Param | Type | Description |
 | --- | --- | --- |
 | [options] | <code>Object</code> | Additional save configurations |
-| [options.sync] | <code>boolean</code> | Should save synchronous? (Default: false) |
+| [options.sync] | <code>boolean</code> | Should save synchronous? _(Default: **false**)_ |
 
 **Returns**: <code>Promise</code> - Saving state callback promise
