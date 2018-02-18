@@ -15,7 +15,7 @@ npm install --save handy-storage
 const HandyStorage = require('handy-storage');
 
 const storage = new HandyStorage();
-storage.load('./information.json');
+storage.connect('./information.json');
 
 storage.data.name = 'Alireza';
 storage.data.skills = ['Art', 'Programming'];
@@ -39,7 +39,7 @@ storage.save();
 
 * [HandyStorage](#HandyStorage)
     * [new HandyStorage([path])](#new_HandyStorage_new)
-    * [.load(path)](#HandyStorage+load)
+    * [.connect(path)](#HandyStorage+connect)
     * [.data](#HandyStorage+data)
     * [.save()](#HandyStorage+save) ⇒ <code>Promise</code>
 
@@ -53,10 +53,10 @@ Represents a "Handy" storage
 | --- | --- | --- |
 | [path] | <code>String</code> | Path of JSON file |
 
-<a name="HandyStorage+load"></a>
+<a name="HandyStorage+connect"></a>
 
-### handyStorage.load(path)
-Loads a JSON file
+### handyStorage.connect(path)
+Connects storage to a JSON file
 
 **Kind**: instance method of [<code>HandyStorage</code>](#HandyStorage)
 
@@ -77,7 +77,7 @@ Mirror object of file's data
 <a name="HandyStorage+save"></a>
 
 ### handyStorage.save() ⇒ <code>Promise</code>
-Saves current data into the JSON file
+Saves current data into the connected JSON file
 
 **Kind**: instance method of [<code>HandyStorage</code>](#HandyStorage)
 **Returns**: <code>Promise</code> - Saving data callback promise

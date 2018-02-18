@@ -12,24 +12,22 @@ class HandyStorage {
         // Initial variables
         this.savingInProgress = false;
 
-        // If path was initialized load it immediately 
-        if (path !== undefined) {
-            this.load(path)
-        }
+        // If path was initialized connect it to the file immediately 
+        if (path !== undefined) this.connect(path)
     }
 
     /**
-     * Loads a JSON file
+     * Connects storage to a JSON file
      * @param {string} path - Path of JSON file
      */
-    load (path) {
+    connect (path) {
         this.path = path
         const content = fs.readFileSync(path, 'utf8')
         this.data = JSON.parse(content == '' ? '{}' : content)
     }
 
     /**
-     * Saves current data into the JSON file
+     * Saves current data into the connected JSON file
      * @return {Promise} Saving data callback promise
      */
     save () {
