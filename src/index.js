@@ -9,7 +9,15 @@ class HandyStorage {
      * @param {String} path - Path of JSON file
      */
     constructor (path) {
-        if (path !== undefined) this.load(path)
+
+        // Initial variables
+        this.savingInProgress = false;
+
+        // If path was initialized load it immediately 
+        if (path !== undefined) {
+            this.load(path)
+        }
+
     }
 
     /**
@@ -30,9 +38,16 @@ class HandyStorage {
      */
     save () {
         return new Promise ((resolve, reject) => {
+            // Reject if saving is in progress
+            if (this.savingInProgress) return reject()
+
+            // Save it if saving was not in progress
+            this.savingInProgress = true;
+
             fs.writeFile(this.path, beautify(this.data, null, 4, 50), (err) => {
+                this.savingInProgress = false;
                 if (err) return reject(err)
-                resolve()
+                resolve(this.data)
             })
         })
     }
