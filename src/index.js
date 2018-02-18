@@ -1,5 +1,5 @@
-const fs = require('fs')
-const beautify = require('json-beautify')
+const fs = require('fs');
+const beautify = require('json-beautify');
 
 class HandyStorage {
 
@@ -22,7 +22,7 @@ class HandyStorage {
         this.beautify = options.beautify || false;
 
         // If path was initialized connect it to the file immediately 
-        if (path) this.connect(path)
+        if (path) this.connect(path);
     }
 
     /**
@@ -30,9 +30,9 @@ class HandyStorage {
      * @param {string} path - Path of JSON file
      */
     connect (path) {
-        this.path = path
-        const content = fs.readFileSync(path, 'utf8')
-        this.data = JSON.parse(content == '' ? '{}' : content)
+        this.path = path;
+        const content = fs.readFileSync(path, 'utf8');
+        this.data = JSON.parse(content || '{}');
     }
 
     /**
@@ -42,7 +42,7 @@ class HandyStorage {
     save () {
         return new Promise ((resolve, reject) => {
             // Reject if saving is in progress
-            if (this.savingInProgress) return reject()
+            if (this.savingInProgress) return reject();
 
             // Save it if saving was not in progress
             this.savingInProgress = true;
@@ -53,8 +53,8 @@ class HandyStorage {
             // writing fileData to file
             fs.writeFile(this.path, fileData, { flag: 'w' }, (err) => {
                 this.savingInProgress = false;
-                if (err) return reject(err)
-                resolve(this.data)
+                if (err) return reject(err);
+                resolve(this.data);
             })
         })
     }
