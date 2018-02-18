@@ -40,7 +40,11 @@ class HandyStorage {
             // Save it if saving was not in progress
             this.savingInProgress = true;
 
-            fs.writeFile(this.path, beautify(this.data, null, 4, 50), (err) => {
+            // fileData
+            const fileData = beautify(this.data, null, 4, 50)
+
+            // writing fileData to file
+            fs.writeFile(this.path, fileData, { flag: 'w' }, (err) => {
                 this.savingInProgress = false;
                 if (err) return reject(err)
                 resolve(this.data)
