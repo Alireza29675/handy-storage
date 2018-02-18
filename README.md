@@ -1,5 +1,7 @@
 <a name="beginning"></a>
 
+![handy-storage logo](https://user-images.githubusercontent.com/2771377/36355655-d20e813a-14fb-11e8-8c15-4741799c9090.png)
+
 # HandyStorage
 **HandyStorage** is a simple way to store your data in a JSON file
 
