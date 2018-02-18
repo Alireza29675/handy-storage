@@ -4,9 +4,9 @@ const beautify = require('json-beautify')
 class HandyStorage {
 
     /**
-     * Handy Storage constructor function
-     * @param {string | object} path - Path of JSON file | Options objects including {path, autoSave}
-     * @param {boolean} autoSave
+     * Represents a Handy storage
+     * @constructor
+     * @param {String} path - Path of JSON file
      */
     constructor (path) {
         if (path !== undefined) this.load(path)
