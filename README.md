@@ -14,18 +14,25 @@ npm install --save handy-storage
 ```javascript
 const HandyStorage = require('handy-storage');
 
-const storage = new HandyStorage();
-storage.connect('./information.json');
+const storage = new HandyStorage({
+    beautify: true
+});
 
-storage.state.name = 'Alireza';
-storage.state.skills = ['Art', 'Programming'];
+storage.connect('./test/information.json');
 
-storage.state.friends = storage.state.friends || [];
+storage.setState({
+    name: 'Alireza',
+    lastname: 'Sh',
+    friends: [
+        'Jane',
+        'John'
+    ],
+    visited: storage.state.visited || 0
+})
 
-storage.state.friends.push('John');
-storage.state.friends.push('Jack');
-
-storage.save();
+storage.setState({
+    visited: storage.state.visited + 1
+})
 ```
 
 <a name="Refrence"></a>
@@ -41,7 +48,8 @@ storage.save();
     * [new HandyStorage([path])](#new_HandyStorage_new)
     * [.connect(path)](#HandyStorage+connect)
     * [.state](#HandyStorage+state)
-    * [.save()](#HandyStorage+save) ⇒ <code>Promise</code>
+    * [.setState([changes])](#HandyStorage+setState)
+    * [.save([options])](#HandyStorage+save) ⇒ <code>Promise</code>
 
 <a name="new_HandyStorage_new"></a>
 
@@ -72,16 +80,31 @@ Connects storage to a JSON file
 <a name="HandyStorage+state"></a>
 
 ### handyStorage.state
-Mirror object of file's data
+State object of storage, including all stored data
 
 **Kind**: instance property of [<code>HandyStorage</code>](#HandyStorage)
 
-**Tip**: you can change this object and call [.save()](#HandyStorage+save) to store it into JSON file.
+**Tip 1**: you can change this object and call [.save()](#HandyStorage+save) to store it into JSON file.
+
+**Tip 2**: try to use [.setState()](#HandyStorage+setState) method instead of changing **.state** directly! it's much safer, also it supports **autoSave** mode.
+
+<a name="HandyStorage+setState"></a>
+
+### handyStorage.setState(changes) ⇒ <code>Promise</code>
+Sets some changes on "state" object then saves it into the file
+
+**Kind**: instance method of [<code>HandyStorage</code>](#HandyStorage)
+
+| Param | Type | Description |
+| --- | --- | --- |
+| changes | <code>Object</code> | State changes |
+
+**Returns**: <code>Promise</code> - State change callback promise
 
 
 <a name="HandyStorage+save"></a>
 
-### handyStorage.save() ⇒ <code>Promise</code>
+### handyStorage.save([options]) ⇒ <code>Promise</code>
 Saves current state into the connected JSON file
 
 **Kind**: instance method of [<code>HandyStorage</code>](#HandyStorage)

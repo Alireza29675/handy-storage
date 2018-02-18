@@ -6,12 +6,16 @@ const storage = new HandyStorage({
 
 storage.connect('./test/information.json');
 
-storage.state.name = 'Alireza';
-storage.state.skills = ['Art', 'Programming'];
+storage.setState({
+    name: 'Alireza',
+    lastname: 'Sh',
+    friends: [
+        'Jane',
+        'John'
+    ],
+    visited: storage.state.visited || 0
+})
 
-storage.state.friends = storage.state.friends || [];
-
-storage.state.friends.push('John');
-storage.state.friends.push('Jack');
-
-storage.save({ sync: true });
+storage.setState({
+    visited: storage.state.visited + 1
+})

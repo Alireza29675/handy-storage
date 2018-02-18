@@ -41,6 +41,33 @@ class HandyStorage {
     }
 
     /**
+     * Sets some changes on "state" object then saves it into the file
+     * @param {Object} changes - State changes
+     * @return {Promise} State change callback promise
+     */
+    setState (changes = {}) {
+        return new Promise((resolve, reject) => {
+            // changes validation
+            if (typeof changes !== 'object') {
+                return reject(`Given parameter in .setState() must be an object, you gave a ${typeof changes}`)
+            }
+
+            // assigning changes to current state
+            Object.assign(this.state, changes)
+
+            // resolving promise
+            resolve(this.state)
+
+            // if autoSave is enabled should save the file
+            if (this.autoSave) {
+                // avoiding saving volley
+                clearTimeout(this.savingTimeout)
+                this.savingTimeout = setTimeout(() => this.save({ sync: true }), 30)
+            }
+        })
+    }
+
+    /**
      * Saves current state into the connected JSON file
      * @param {Object} [options] - Additional save configurations
      * @param {boolean} [options.sync] - Should save synchronous? (Default: false)
