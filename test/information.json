@@ -1,5 +1,8 @@
 {
     "name": "Alireza",
     "skills": [ "Art", "Programming" ],
-    "friends": [ "John", "Jack" ]
+    "friends": [
+        "John",
+        "Jack"
+    ]
 }

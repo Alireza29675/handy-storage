@@ -6,14 +6,23 @@ class HandyStorage {
     /**
      * Represents a "Handy" storage
      * @constructor
-     * @param {String} [path] - Path of JSON file
+     * @param {string} [path] - Path of JSON file
+     * @param {Object} [options] - Additional Configurations
+     * @param {boolean} [options.beautify] - Should storage beautify JSON before storing
      */
-    constructor (path) {
+    constructor (path, options = {}) {
+        // If options was the first argument
+        if (typeof path === 'object') {
+            options = path;
+            path = undefined;
+        }
+
         // Initial variables
         this.savingInProgress = false;
+        this.beautify = options.beautify || false;
 
         // If path was initialized connect it to the file immediately 
-        if (path !== undefined) this.connect(path)
+        if (path) this.connect(path)
     }
 
     /**
@@ -38,8 +47,8 @@ class HandyStorage {
             // Save it if saving was not in progress
             this.savingInProgress = true;
 
-            // fileData
-            const fileData = beautify(this.data, null, 4, 50)
+            // beutify data if required
+            const fileData = this.beautify ? beautify(this.data, null, 4, 50) : JSON.stringify(this.data);
 
             // writing fileData to file
             fs.writeFile(this.path, fileData, { flag: 'w' }, (err) => {

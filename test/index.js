@@ -1,7 +1,10 @@
 const HandyStorage = require('../lib/index');
 
-const storage = new HandyStorage();
-storage.load('./test/information.json');
+const storage = new HandyStorage({
+    beautify: true
+});
+
+storage.connect('./test/information.json');
 
 storage.data.name = 'Alireza';
 storage.data.skills = ['Art', 'Programming'];

@@ -45,13 +45,17 @@ storage.save();
 
 <a name="new_HandyStorage_new"></a>
 
-### new HandyStorage([path])
+### new HandyStorage([path], [options])
 Represents a "Handy" storage
+
 
 
 | Param | Type | Description |
 | --- | --- | --- |
-| [path] | <code>String</code> | Path of JSON file |
+| [path] | <code>string</code> | Path of JSON file |
+| [options] | <code>Object</code> | Additional Configurations |
+| [options.beautify] | <code>boolean</code> | Should storage beautify JSON before storing? |
+
 
 <a name="HandyStorage+connect"></a>
 
