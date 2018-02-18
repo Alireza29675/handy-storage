@@ -8,27 +8,25 @@ class HandyStorage {
      * @param {string | object} path - Path of JSON file | Options objects including {path, autoSave}
      * @param {boolean} autoSave
      */
-    constructor (path, autoSave = false) {
-        if (typeof path === 'object') {
-            if (path.autoSave !== undefined) autoSave = path.autoSave
-            path = path.path || path.url || undefined
-        }
+    constructor (path) {
         if (path !== undefined) this.load(path)
-        this.autoSave = autoSave
     }
 
     /**
      * Select and loads a JSON file
      * @param {string} path - Path of JSON file you want to load
+     * @return {HandyStorage} returns this
      */
     load (path) {
         this.path = path
         const content = fs.readFileSync(path, 'utf8')
         this.data = JSON.parse(content == '' ? '{}' : content)
+        return this;
     }
 
     /**
      * Saves the current storage into the selected JSON file
+     * @return {Promise} saving promise
      */
     save () {
         return new Promise ((resolve, reject) => {
@@ -39,28 +37,6 @@ class HandyStorage {
         })
     }
 
-    /**
-     * autoSave variable setter
-     * @param (boolean) mustAutoSave
-     */
-    set autoSave (mustAutoSave) {
-        if (typeof mustAutoSave === 'boolean') {
-            this._autoSave = mustAutoSave
-            if (mustAutoSave) {
-                
-            }
-            else {
-
-            }
-        }
-    }
-
-    /**
-     * autoSave variable getter
-     */
-    get autoSave () {
-        return this._autoSave
-    }
 }
 
 module.exports = HandyStorage
