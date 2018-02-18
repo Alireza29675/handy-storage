@@ -4,12 +4,11 @@ const beautify = require('json-beautify')
 class HandyStorage {
 
     /**
-     * Represents a Handy storage
+     * Represents a "Handy" storage
      * @constructor
-     * @param {String} path - Path of JSON file
+     * @param {String} [path] - Path of JSON file
      */
     constructor (path) {
-
         // Initial variables
         this.savingInProgress = false;
 
@@ -17,24 +16,21 @@ class HandyStorage {
         if (path !== undefined) {
             this.load(path)
         }
-
     }
 
     /**
-     * Select and loads a JSON file
-     * @param {string} path - Path of JSON file you want to load
-     * @return {HandyStorage} returns this
+     * Loads a JSON file
+     * @param {string} path - Path of JSON file
      */
     load (path) {
         this.path = path
         const content = fs.readFileSync(path, 'utf8')
         this.data = JSON.parse(content == '' ? '{}' : content)
-        return this;
     }
 
     /**
-     * Saves the current storage into the selected JSON file
-     * @return {Promise} saving promise
+     * Saves current data into the JSON file
+     * @return {Promise} Saving data callback promise
      */
     save () {
         return new Promise ((resolve, reject) => {
