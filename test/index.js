@@ -1,13 +1,14 @@
-var Handy = require('../lib/index')
+const HandyStorage = require('../lib/index');
 
-const storage = new Handy('./test/db.json')
-const { data } = storage
+const storage = new HandyStorage();
+storage.load('./test/information.json');
 
-data.d = true
-data.c = 1
-data.f = {}
-data.f.name = 'alireza'
+storage.data.name = 'Alireza';
+storage.data.skills = ['Art', 'Programming'];
 
-storage.save()
+storage.data.friends = storage.data.friends || [];
 
-console.log(storage)
+storage.data.friends.push('John');
+storage.data.friends.push('Jack');
+
+storage.save();

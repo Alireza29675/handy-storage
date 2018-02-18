@@ -15,7 +15,7 @@ npm install --save handy-storage
 const HandyStorage = require('handy-storage');
 
 const storage = new HandyStorage();
-storage.load('./users.json');
+storage.load('./information.json');
 
 storage.data.name = 'Alireza';
 storage.data.skills = ['Art', 'Programming'];
@@ -30,7 +30,7 @@ storage.save();
 
 <a name="Refrence"></a>
 
-## Storage Refrence
+## Manual Refrence
 
 <a name="HandyStorage"></a>
 
