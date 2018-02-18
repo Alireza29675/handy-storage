@@ -54,7 +54,8 @@ Represents a "Handy" storage
 | --- | --- | --- |
 | [path] | <code>string</code> | Path of JSON file |
 | [options] | <code>Object</code> | Additional Configurations |
-| [options.beautify] | <code>boolean</code> | Should storage beautify JSON before storing? |
+| [options.beautify] | <code>boolean</code> | Should storage beautify JSON before storing? (Default: false) |
+| [options.autoSave] | <code>boolean</code> | Should storage auto save when you use **.setState()** method? (Default: true) |
 
 
 <a name="HandyStorage+connect"></a>

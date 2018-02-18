@@ -8,7 +8,8 @@ class HandyStorage {
      * @constructor
      * @param {string} [path] - Path of JSON file
      * @param {Object} [options] - Additional Configurations
-     * @param {boolean} [options.beautify] - Should storage beautify JSON before storing
+     * @param {boolean} [options.beautify] - Should storage beautify JSON before storing? (Default: false)
+     * @param {boolean} [options.autoSave] - Should storage auto save when you use .setState() method? (Default: true)
      */
     constructor (path, options = {}) {
         // If options was the first argument
@@ -23,6 +24,7 @@ class HandyStorage {
         // Initial variables
         this.savingInProgress = false;
         this.beautify = options.beautify || false;
+        this.autoSave = (typeof options.autoSave === 'boolean') ? options.autoSave : true;
 
         // If path was initialized connect it to the file immediately 
         if (path) this.connect(path);
