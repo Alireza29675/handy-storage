@@ -53,15 +53,15 @@ class HandyStorage {
             }
 
             // assigning changes to current state
-            Object.assign(this.state, changes)
+            Object.assign(this.state, changes);
 
             // resolving promise
-            resolve(this.state)
+            resolve(this.state);
 
             // if autoSave is enabled should save the file
             if (this.autoSave) {
                 // avoiding saving volley
-                clearTimeout(this.savingTimeout)
+                clearTimeout(this.savingTimeout);
                 this.savingTimeout = setTimeout(() => this.save({ sync: true }), 30)
             }
         })
@@ -85,17 +85,17 @@ class HandyStorage {
             // Save it if saving was not in progress
             this.savingInProgress = true;
 
-            // beutify state object if required
+            // beautify state object if required
             const data = this.beautify ? beautify(this.state, null, 4, 50) : JSON.stringify(this.state);
 
-            const fileWriteOptions = { flag: 'w', encoding: 'utf8' }
+            const fileWriteOptions = { flag: 'w', encoding: 'utf8' };
 
             // writing data to file asynchronous
             if (!sync) fs.writeFile(this.path, data, fileWriteOptions, (err) => {
                 this.savingInProgress = false;
                 if (err) return reject(err);
                 resolve(this.state);
-            })
+            });
 
             // writing data synchronous
             else try {
@@ -111,4 +111,4 @@ class HandyStorage {
 
 }
 
-module.exports = HandyStorage
+module.exports = HandyStorage;
