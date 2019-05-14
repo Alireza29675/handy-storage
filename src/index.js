@@ -36,7 +36,10 @@ class HandyStorage {
      */
     connect (path) {
         this.path = path;
-        const content = fs.readFileSync(path, 'utf8');
+        const content = fs.existsSync(path) ? fs.readFileSync(path, 'utf8') : (() => {
+            fs.writeFileSync(path, '{}')
+            return '{}'
+        })()
         this.state = JSON.parse(content || '{}');
     }
 
