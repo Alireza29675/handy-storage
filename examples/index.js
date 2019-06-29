@@ -1,10 +1,11 @@
+const path = require('path');
 const HandyStorage = require('../lib/index');
 
 const storage = new HandyStorage({
     beautify: true
 });
 
-storage.connect('./test/information.json');
+storage.connect(path.resolve(__dirname, './information.json'));
 
 storage.setState({
     name: 'Alireza',

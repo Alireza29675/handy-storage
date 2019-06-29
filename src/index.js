@@ -41,6 +41,7 @@ class HandyStorage {
             return '{}'
         })()
         this.state = JSON.parse(content || '{}');
+        return this;
     }
 
     /**
