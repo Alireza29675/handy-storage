@@ -4,8 +4,10 @@ declare class HandyStoragePromise<T> {
 }
 
 declare class HandyStorage<T = any> {
-    new (path: string, options?: {beautify?: boolean, autoSave?: boolean});
+    new (path: string, options?: {beautify?: boolean, autoSave?: boolean}): HandyStorage;
     connect (path: string): HandyStorage;
+    beautify: boolean;
+    autoSave: boolean;
     setState (changes: T): HandyStoragePromise<T>;
     save (options?: {sync?: boolean}): HandyStoragePromise<T>;
 }
