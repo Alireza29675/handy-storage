@@ -1,6 +1,6 @@
 {
   "name": "handy-storage",
-  "version": "2.1.4",
+  "version": "2.1.5",
   "description": "HandyStorage is a simple way to store your data in a JSON file",
   "main": "lib/index.js",
   "types": "./main.d.ts",

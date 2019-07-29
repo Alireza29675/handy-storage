@@ -1,9 +1,9 @@
-interface HandyStoragePromise<T> {
+declare class HandyStoragePromise<T> {
     then: (state: T) => void;
     catch: (error: string) => void;
 }
 
-interface HandyStorage<T = any> {
+declare class HandyStorage<T = any> {
     new (path: string, options?: {beautify?: boolean, autoSave?: boolean});
     connect (path: string): HandyStorage;
     setState (changes: T): HandyStoragePromise<T>;
